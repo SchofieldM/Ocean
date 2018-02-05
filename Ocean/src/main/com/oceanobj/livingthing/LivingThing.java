@@ -2,7 +2,7 @@ package main.com.oceanobj.livingthing;
 
 import java.util.ArrayList;
 import main.com.oceanobj.OceanObj;
-
+import main.com.ocean.*;
 public abstract class LivingThing extends OceanObj{
 
 	protected ArrayList<String> threats;
@@ -11,8 +11,9 @@ public abstract class LivingThing extends OceanObj{
 	protected int age;
 	protected int lifeSpan;
 	
-	public LivingThing(int lifeSpan, ArrayList<String> threats, ArrayList<String> food, String species)
+	public LivingThing(Ocean ocean, int lifeSpan, ArrayList<String> threats, ArrayList<String> food, String species, String code)
 	{
+		super(code, ocean);
 		this.species = species;
 		this.threats = threats;
 		this.food = food;

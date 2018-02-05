@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import main.com.oceanobj.livingthing.animal.Animal;
 
+import main.com.ocean.*;
+
 public abstract class Fish extends Animal{
 
 // Fields
@@ -12,9 +14,9 @@ public abstract class Fish extends Animal{
 	// int
 		protected int speed;
 	
-	public Fish(String species, ArrayList<String> threats, ArrayList<String> food, int maxHunger, int speed, int lifeSpan)
+	public Fish(Ocean ocean, String species, int maxHunger, int speed, int lifeSpan, String code)
 	{
-		super(speed, maxHunger, lifeSpan, threats, food, species);
+		super(ocean, speed, maxHunger, lifeSpan, new ArrayList<String>(), new ArrayList<String>(), species, code);
 	}
 
 }

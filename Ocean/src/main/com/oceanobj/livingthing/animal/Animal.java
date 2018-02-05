@@ -1,19 +1,29 @@
 package main.com.oceanobj.livingthing.animal;
 
+
 import main.com.oceanobj.livingthing.LivingThing;
-
 import java.util.ArrayList;
+import main.com.ocean.Ocean;
 
-public class Animal extends LivingThing {
 
+/**
+ * Animal OceanObj, eats and moves
+ * 
+ * @author Matthew Schofield
+ * @version 2.4.18
+ */
+public abstract class Animal extends LivingThing {
 
-	protected int hunger;
-	protected int maxHunger;
-	protected int speed;
+// Fields
+	// int
+		protected int hunger;
+		protected int maxHunger;
+		protected int speed;
 	
-	public Animal(int speed, int maxHunger, int lifeSpan, ArrayList<String> threats, ArrayList<String> food, String species)
+// Constructors
+	public Animal(Ocean ocean, int speed, int maxHunger, int lifeSpan, ArrayList<String> threats, ArrayList<String> food, String species, String code)
 	{
-		super(lifeSpan, threats, food, species);
+		super(ocean, lifeSpan, threats, food, species, code);
 		hunger = 0;
 		this.maxHunger = maxHunger;
 	}
