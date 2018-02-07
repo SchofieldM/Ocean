@@ -1,5 +1,12 @@
 package main.com.entity.fish;
 
-public abstract class Fish {
+import main.com.entity.Entity;
 
+public abstract class Fish extends Entity {
+
+	public Fish(String code)
+	{
+		super(code);
+	}
+	
 }
