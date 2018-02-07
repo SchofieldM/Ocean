@@ -1,5 +1,5 @@
 package main.com.entity.fish;
 
-public class Fish {
+public abstract class Fish {
 
 }
