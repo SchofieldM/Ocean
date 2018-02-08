@@ -19,7 +19,9 @@ public abstract class Entity {
 		}
 	
 // Methods
-		
+		public abstract void turn();
+		public abstract String getDirection();
+		public abstract void clearDirection();
 	// void
 		public void setOcean(Ocean ocean)
 		{

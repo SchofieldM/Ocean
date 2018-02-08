@@ -3,7 +3,7 @@ package main.com;
 import java.util.ArrayList;
 
 import main.com.entity.Entity;
-import main.com.entity.fish.Tuna;
+import main.com.entity.animal.fish.Tuna;
 import main.com.ocean.Ocean;
 
 /**
@@ -23,7 +23,8 @@ public class Start {
 	{
 		// Starting entities
 		ArrayList<Entity> pacificStartingEntities = new ArrayList<>();
-		pacificStartingEntities.add(new Tuna());
+		pacificStartingEntities.add
+		(new Tuna());
 		
 		// Initialization of Oceans
 		Ocean pacific = new Ocean(10, pacificStartingEntities);
