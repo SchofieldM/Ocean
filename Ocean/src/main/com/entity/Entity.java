@@ -17,11 +17,10 @@ public abstract class Entity {
 		{
 			this.code = code;
 		}
-	
-// Methods
+// Abstract Methods	
 		public abstract void turn();
-		public abstract String getDirection();
-		public abstract void clearDirection();
+// Methods
+		
 	// void
 		public void setOcean(Ocean ocean)
 		{

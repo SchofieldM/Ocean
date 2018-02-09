@@ -3,14 +3,14 @@ package main.com;
 import java.util.ArrayList;
 
 import main.com.entity.Entity;
-import main.com.entity.animal.fish.Tuna;
+import main.com.entity.livingthing.animal.fish.Tuna;
 import main.com.ocean.Ocean;
 
 /**
  * Entrance point for the project
  * 
  *@author Matthew Schofield
- *@version 2.7.18
+ *@version 2.9.18
  */
 public class Start {
 
@@ -23,8 +23,7 @@ public class Start {
 	{
 		// Starting entities
 		ArrayList<Entity> pacificStartingEntities = new ArrayList<>();
-		pacificStartingEntities.add
-		(new Tuna());
+		pacificStartingEntities.add(new Tuna());
 		
 		// Initialization of Oceans
 		Ocean pacific = new Ocean(10, pacificStartingEntities);

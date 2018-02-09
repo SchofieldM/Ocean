@@ -23,11 +23,14 @@ public class Simulation {
 	public void showOceans()
 	{
 		for(Ocean ocean : oceans) {
-			ArrayList<Entity>[][] layout = ocean.getLayout();
+			Entity[][] layout = ocean.getLayout();
 			for(int y = layout.length -1; y >= 0; y--) {
 				for(int x = layout[y].length -1; x >= 0; x--) {
-					for(Entity e : layout[y][x]) {
-						System.out.print(e.getCode() + " ");
+					Entity e = layout[y][x];
+					if(e != null) {
+						System.out.print(e.getCode());
+					}else {
+						System.out.print("    ");
 					}
 					System.out.print("|");
 				}
