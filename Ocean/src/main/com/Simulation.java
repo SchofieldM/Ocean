@@ -6,6 +6,12 @@ import java.util.Scanner;
 import main.com.ocean.Ocean;
 import main.com.entity.Entity;
 
+/**
+ * Simulation handler to simulate Oceans
+ * 
+ * @author Matthew Schofield
+ * @version 2.14.17
+ */
 public class Simulation {
 
 // Fields
@@ -20,6 +26,9 @@ public class Simulation {
 		running = false;
 	}
 	
+	/**
+	 * Prints to screen the current layout of the Oceans being simulated
+	 */
 	public void showOceans()
 	{
 		for(Ocean ocean : oceans) {
