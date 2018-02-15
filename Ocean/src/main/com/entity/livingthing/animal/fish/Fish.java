@@ -13,9 +13,9 @@ import main.com.entity.livingthing.animal.Animal;;
  */
 public abstract class Fish extends Animal {
 
-	public Fish(String species, String code, Ocean ocean, ArrayList<String> threats, ArrayList<String> food)
+	public Fish(String species, String code, int maxSize ,int caloricValue, Ocean ocean, ArrayList<String> threats, ArrayList<String> food)
 	{
-		super(species, code, ocean, threats, food);
+		super(species, code, caloricValue, ocean, threats, food);
 	}
 	
 }

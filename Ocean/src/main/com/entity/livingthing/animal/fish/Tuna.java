@@ -6,7 +6,8 @@ public class Tuna extends Fish {
 
 	public Tuna()
 	{
-		super("Tuna", "Tuna", null, null, null);
+		super("Tuna", "Tuna", 10, 100, null, null, null);
+		
 	}
 	
 	public void turn() {}

@@ -7,7 +7,10 @@ public abstract class LivingThing extends Entity{
 // Fields
 	// int
 		protected int caloricValue;
-	
+		protected int age;
+		protected int lifeSpan;
+	// boolean
+		protected boolean alive;
 //Constructors
 	/**
 	 * 
@@ -18,6 +21,7 @@ public abstract class LivingThing extends Entity{
 	public LivingThing(String code, int caloricValue)
 	{
 		super(code);
+		alive = true;
 	}
 	
 // Methods
@@ -27,6 +31,24 @@ public abstract class LivingThing extends Entity{
 	public int getCaloricValue()
 	{
 		return caloricValue;
+	}
+	
+	/**
+	 * 
+	 */
+	public boolean isAlive()
+	{
+		return alive;
+	}
+	
+	
+	
+	/**
+	 * 
+	 */
+	public void die()
+	{
+		alive = false;
 	}
 	
 	/**

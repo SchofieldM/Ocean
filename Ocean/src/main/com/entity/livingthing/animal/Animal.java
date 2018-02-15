@@ -19,9 +19,9 @@ public abstract class Animal extends LivingThing {
 	// Boolean
 		protected boolean male;
 		
-	public Animal(String species, String code, Ocean ocean, ArrayList<String> threats, ArrayList<String> food)
+	public Animal(String species, String code, int caloricValue, Ocean ocean, ArrayList<String> threats, ArrayList<String> food)
 	{
-		super(code);
+		super(code, caloricValue);
 		this.ocean = ocean;
 		this.threats = threats;
 		this.food = food;
