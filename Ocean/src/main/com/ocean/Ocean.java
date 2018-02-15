@@ -20,6 +20,9 @@ public class Ocean {
 		private Entity[][] layout;
 	// ArrayList
 		private ArrayList<Entity> entities;
+	// int
+		private int turnNumber;
+		private int everyThisTurnPrint;
 		
 // Constructor
 	/**
@@ -32,6 +35,8 @@ public class Ocean {
 	{
 		this.layout = new Entity[dimensions][dimensions];
 		this.entities = entities;
+		this.turnNumber = 0;
+		this.everyThisTurnPrint = 1;
 		
 		// Disperses the entities into the Ocean
 		for(Entity e : entities) {
@@ -66,5 +71,47 @@ public class Ocean {
 		return layout;
 	}
 	
+	// int
+	/**
+	 * Accessor method for the turn number
+	 * 
+	 * @return the turn number
+	 */
+	public int getTurnNumber()
+	{
+		return turnNumber;
+	}
 	
+	
+	// boolean
+	/**
+	 * Moves a unit if it is a valid move
+	 * 
+	 * @return, true: valid move, false: invalid move
+	 */
+	public boolean moveCell(int curX, int curY, int newX, int newY)
+	{
+		try {
+			layout[newY][newX] = layout[curY][curX];
+			layout[curY][curX] = null;
+			return true;
+		}catch(ArrayIndexOutOfBoundsException e){
+			return false;
+		}
+	}
+	
+	/**
+	 * Has the Ocean process a turn
+	 */
+	public boolean turn()
+	{
+		for(Entity entity : entities) {
+			entity.turn();
+		}
+		if(turnNumber % everyThisTurnPrint == 0) {
+			return true;
+		}
+		turnNumber++;
+		return false;
+	}
 }
