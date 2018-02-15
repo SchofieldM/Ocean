@@ -29,35 +29,33 @@ public class Simulation {
 	/**
 	 * Prints to screen the current layout of the Oceans being simulated
 	 */
-	public void showOceans()
+	public void showOcean(Ocean ocean)
 	{
-		for(Ocean ocean : oceans) {
-			Entity[][] layout = ocean.getLayout();
-			for(int y = layout.length -1; y >= 0; y--) {
-				for(int x = layout[y].length -1; x >= 0; x--) {
-					Entity e = layout[y][x];
-					if(e != null) {
-						System.out.print(e.getCode());
-					}else {
-						System.out.print("    ");
-					}
-					System.out.print("|");
+		Entity[][] layout = ocean.getLayout();
+		for(int y = layout.length -1; y >= 0; y--) {
+			for(int x = layout[y].length -1; x >= 0; x--) {
+				Entity e = layout[y][x];
+				if(e != null) {
+					System.out.print(e.getCode());
+				}else {
+					System.out.print("    ");
 				}
-				System.out.println();
-			}			
-		}
+				System.out.print("|");
+			}
+			System.out.println();
+		}			
+		
 	}
 	
 	public void run()
 	{
-		showOceans();
 		running = true;
 		while(running) {
 			for(Ocean ocean : oceans) {
-				ocean.turn();
+				if(ocean.turn()) {
+					showOcean(ocean);
+				}
 			}
-			showOceans();
-			(new Scanner(System.in)).nextLine();
 		}
 	}
 	
