@@ -1,6 +1,7 @@
 package main.com.entity.livingthing.animal.fish;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import main.com.ocean.Ocean;
 
 import main.com.entity.Entity;
@@ -13,9 +14,14 @@ import main.com.entity.livingthing.animal.Animal;;
  */
 public abstract class Fish extends Animal {
 
-	public Fish(String species, String code, int maxSize ,int caloricValue, Ocean ocean, ArrayList<String> threats, ArrayList<String> food)
+	public Fish(String code, int maxSize ,int caloricValue, Ocean ocean, HashMap<String, Integer> interestInOthers)
 	{
-		super(species, code, caloricValue, ocean, threats, food);
+		super(code, caloricValue, ocean, interestInOthers);
+	}
+	
+	public Fish(String code, int maxSize ,int caloricValue, Ocean ocean)
+	{
+		super(code, caloricValue, ocean);
 	}
 	
 }
