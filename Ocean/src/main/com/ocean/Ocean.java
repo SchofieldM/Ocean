@@ -22,7 +22,6 @@ public class Ocean {
 		private ArrayList<Entity> entities;
 	// int
 		private int turnNumber;
-		private int everyThisTurnPrint;
 		
 // Constructor
 	/**
@@ -36,7 +35,6 @@ public class Ocean {
 		this.layout = new Entity[dimensions][dimensions];
 		this.entities = entities;
 		this.turnNumber = 0;
-		this.everyThisTurnPrint = 1;
 		
 		// Disperses the entities into the Ocean
 		for(Entity e : entities) {
@@ -49,6 +47,18 @@ public class Ocean {
 	}
 	
 // Methods
+	// void
+	/**
+	 * Has the Ocean process a turn
+	 */
+	public void turn()
+	{
+		for(Entity entity : entities) {
+			entity.turn();
+		}
+		turnNumber++;
+	}
+	
 	// ArrayList<Entity>
 	/**
 	 * Accessor method for the entities within the Ocean
@@ -100,18 +110,5 @@ public class Ocean {
 		}
 	}
 	
-	/**
-	 * Has the Ocean process a turn
-	 */
-	public boolean turn()
-	{
-		for(Entity entity : entities) {
-			entity.turn();
-		}
-		if(turnNumber % everyThisTurnPrint == 0) {
-			return true;
-		}
-		turnNumber++;
-		return false;
-	}
+	
 }
