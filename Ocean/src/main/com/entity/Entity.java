@@ -6,20 +6,24 @@ public abstract class Entity {
 
 // Fields
 	// int[]
-		private int[] coords;
+		protected int[] coords;
 	// Ocean
-		private Ocean ocean;
+		protected Ocean ocean;
 	// String
-		private String code;
+		protected String code;
+
 		
 // Constructor
-		public Entity(String code)
+		public Entity(String code, Ocean ocean)
 		{
 			this.code = code;
+			this.ocean = ocean;
 		}
+		
 // Abstract Methods	
 		public abstract void turn();
-// Methods
+		
+// Concrete Methods
 		
 	// void
 		public void setOcean(Ocean ocean)
