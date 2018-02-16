@@ -1,16 +1,20 @@
 package main.com.entity.livingthing;
 
 import main.com.entity.Entity;
+import main.com.ocean.Ocean;
 
 public abstract class LivingThing extends Entity{
 
 // Fields
 	// int
-		protected int caloricValue;
+		protected int size;
+		protected int caloricValuePerSize;
 		protected int age;
 		protected int lifeSpan;
+		protected int health;
 	// boolean
 		protected boolean alive;
+		
 //Constructors
 	/**
 	 * 
@@ -18,19 +22,20 @@ public abstract class LivingThing extends Entity{
 	 * @param code
 	 * @param caloricValue
 	 */
-	public LivingThing(String code, int caloricValue)
+	public LivingThing(String code, int caloricValue, Ocean ocean)
 	{
-		super(code);
+		super(code, ocean);
 		alive = true;
+		health = 80;
 	}
 	
 // Methods
 	/**
 	 * 
 	 */
-	public int getCaloricValue()
+	public int getCaloricValuePerSize()
 	{
-		return caloricValue;
+		return caloricValuePerSize * size;
 	}
 	
 	/**
@@ -51,14 +56,8 @@ public abstract class LivingThing extends Entity{
 		alive = false;
 	}
 	
-	/**
-	 * 
-	 * @param amountToChange
-	 */
-	public void changeCaloric(int amountToChange)
-	{
-		caloricValue += amountToChange;
-	}
+	
+	
 	
 	
 }
