@@ -21,6 +21,9 @@ public class Tuna extends Fish {
 	public Tuna(Ocean ocean)
 	{
 		super("TUNA", 10, 100, ocean);
+		interestInOthers = new HashMap<>();
+		interestInOthers.put("TUNA", 10);
+		interestInOthers.put("SHRK", -100);
 	}
 	
 	/**
@@ -34,9 +37,5 @@ public class Tuna extends Fish {
 		super("TUNA", 10, 100, ocean, interestInOthers);
 	}
 	
-	public void turn() 
-	{
-		
-	}
 	
 }
