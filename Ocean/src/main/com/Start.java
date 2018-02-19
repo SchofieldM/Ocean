@@ -10,7 +10,7 @@ import main.com.ocean.Ocean;
  * Entrance point for the project
  * 
  *@author Matthew Schofield
- *@version 2.9.18
+ *@version 2.18.18
  */
 public class Start {
 
@@ -26,7 +26,7 @@ public class Start {
 		pacificStartingEntities.add(new Tuna());
 		
 		// Initialization of Oceans
-		Ocean pacific = new Ocean(10, pacificStartingEntities);
+		Ocean pacific = new Ocean(Interget.parseString(args[0]), pacificStartingEntities);
 		
 		// Adds Oceans into an ArrayList
 		ArrayList<Ocean> oceans = new ArrayList<>();
