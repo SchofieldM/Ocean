@@ -9,7 +9,7 @@ import java.util.HashMap;
  * A Tuna
  * 
  * @author Matthew Schofield
- * @version 2.16.18
+ * @version 2.19.18
  */
 public class Tuna extends Fish {
 
@@ -35,6 +35,9 @@ public class Tuna extends Fish {
 	public Tuna(Ocean ocean, HashMap<String, Integer> interestInOthers)
 	{
 		super("TUNA", 10, 100, ocean, interestInOthers);
+		interestInOthers = interestInOthers;
+		interestInOthers.put("TUNA", 10);
+		interestInOthers.put("SHRK", -100);
 	}
 	
 	
