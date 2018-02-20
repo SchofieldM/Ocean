@@ -101,13 +101,16 @@ public class Ocean {
 	 */
 	public boolean moveCell(int curX, int curY, int newX, int newY)
 	{
-		try {
-			layout[newY][newX] = layout[curY][curX];
-			layout[curY][curX] = null;
-			return true;
-		}catch(ArrayIndexOutOfBoundsException e){
-			return false;
+		if(curX != newX || curY != newY) {
+			try {
+				layout[newY][newX] = layout[curY][curX];
+				layout[curY][curX] = null;
+				return true;
+			}catch(ArrayIndexOutOfBoundsException e){
+				return false;
+			}
 		}
+		return true;
 	}
 	
 	
