@@ -31,6 +31,10 @@ public abstract class Entity {
 			this.ocean = ocean;
 		}
 		
+		/**
+		 * x,y
+		 * @param coords x,y
+		 */
 		public void setCoords(int[] coords)
 		{
 			this.coords = coords;
@@ -43,6 +47,11 @@ public abstract class Entity {
 		}
 		
 	// int[]
+		/**
+		 * x,y
+		 * 
+		 * @return coords x,y
+		 */
 		public int[] getCoords()
 		{
 			return coords;
