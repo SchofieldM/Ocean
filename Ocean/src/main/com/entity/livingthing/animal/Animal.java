@@ -44,7 +44,7 @@ public abstract class Animal extends LivingThing {
 	}	
 	
 	public void turn()
-		{
+	{
 		requestMove();	
 	}
 	
@@ -62,8 +62,10 @@ public abstract class Animal extends LivingThing {
 			newX++;
 		}else if(move.contains("LEFT")) {
 			newX--;
-		}		
+		}
 		ocean.moveCell(coords[0], coords[1], newX, newY);
+		coords[0] = newX;
+		coords[1] = newY;
 	}
 	
 	public void eat(LivingThing toEat)
@@ -95,129 +97,181 @@ public abstract class Animal extends LivingThing {
 	
 	public void calculateMoveValues()
 	{
+		resetPointsToEachMove();
+		Entity cell;
 		// Directly above
-		Entity cell = ocean.getLayout()[coords[1] + 3][coords[0]]; 
-		if(cell != null) {
-			pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 5 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] + 2][coords[0]]; 
-		if(cell != null) {
-			pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 25 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] + 1][coords[0]]; 
-		if(cell != null) {
-			pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 125 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 125 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 125 * interestInOthers.get(cell.getCode()));
-		}
+		try {
+			cell = ocean.getLayout()[coords[1] + 3][coords[0]]; 
+			if(cell != null) {
+				pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 5 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
+		try {
+			cell = ocean.getLayout()[coords[1] + 2][coords[0]]; 
+			if(cell != null) {
+				pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 25 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
+		try {
+			cell = ocean.getLayout()[coords[1] + 1][coords[0]]; 
+			if(cell != null) {
+				pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 125 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 125 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 125 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
 		
 		// Above right
-		cell = ocean.getLayout()[coords[1] + 2][coords[0] + 1]; 
-		if(cell != null) {
-			pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 5 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] + 1][coords[0] + 1]; 
-		if(cell != null) {
-			pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 25 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] + 1][coords[0] + 2]; 
-		if(cell != null) {
-			pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 5 * interestInOthers.get(cell.getCode()));
-		}
+		try {
+			cell = ocean.getLayout()[coords[1] + 2][coords[0] + 1]; 
+			if(cell != null) {
+				pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 5 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
+		try {
+			cell = ocean.getLayout()[coords[1] + 1][coords[0] + 1]; 
+			if(cell != null) {
+				pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 25 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+			
+		try {
+			cell = ocean.getLayout()[coords[1] + 1][coords[0] + 2]; 
+			if(cell != null) {
+				pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPRIGHT", pointsToEachMove.get("UPRIGHT") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 5 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
 		
 		// Above LEFT
-		cell = ocean.getLayout()[coords[1] + 2][coords[0] - 1]; 
-		if(cell != null) {
-			pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 5 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] + 1][coords[0] - 1]; 
-		if(cell != null) {
-			pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 25 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] + 1][coords[0] - 2]; 
-		if(cell != null) {
-			pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 5 * interestInOthers.get(cell.getCode()));
-		}
+		try{
+			cell = ocean.getLayout()[coords[1] + 2][coords[0] - 1]; 
+			if(cell != null) {
+				pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 5 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
+		try{
+			cell = ocean.getLayout()[coords[1] + 1][coords[0] - 1]; 
+			if(cell != null) {
+				pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 25 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
+		try {
+			cell = ocean.getLayout()[coords[1] + 1][coords[0] - 2]; 
+			if(cell != null) {
+				pointsToEachMove.put("UP", pointsToEachMove.get("UP") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("UPLEFT", pointsToEachMove.get("UPLEFT") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 5 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
 		
 		// Below right
-		cell = ocean.getLayout()[coords[1] - 2][coords[0] + 1]; 
-		if(cell != null) {
-			pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 5 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] - 1][coords[0] + 1]; 
-		if(cell != null) {
-			pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 25 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] - 1][coords[0] + 2]; 
-		if(cell != null) {
-			pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 5 * interestInOthers.get(cell.getCode()));
-		}
+		try {
+			cell = ocean.getLayout()[coords[1] - 2][coords[0] + 1]; 
+			if(cell != null) {
+				pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 5 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
+		try {
+			cell = ocean.getLayout()[coords[1] - 1][coords[0] + 1]; 
+			if(cell != null) {
+				pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 25 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
+		try {
+			cell = ocean.getLayout()[coords[1] - 1][coords[0] + 2]; 
+			if(cell != null) {
+				pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("RIGHT", pointsToEachMove.get("RIGHT") + 5 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
 		
 		// Below LEFT
-		cell = ocean.getLayout()[coords[1] - 2][coords[0] - 1]; 
-		if(cell != null) {
-			pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 5 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] - 1][coords[0] - 1]; 
-		if(cell != null) {
-			pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 25 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] - 1][coords[0] - 2]; 
-		if(cell != null) {
-			pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 5 * interestInOthers.get(cell.getCode()));
-		}		
+		try {
+			cell = ocean.getLayout()[coords[1] - 2][coords[0] - 1]; 
+			if(cell != null) {
+				pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 5 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
+		try {
+			cell = ocean.getLayout()[coords[1] - 1][coords[0] - 1]; 
+			if(cell != null) {
+				pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 25 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
+		try {
+			cell = ocean.getLayout()[coords[1] - 1][coords[0] - 2]; 
+			if(cell != null) {
+				pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("LEFT", pointsToEachMove.get("LEFT") + 5 * interestInOthers.get(cell.getCode()));
+			}		
+		}catch(Exception e) {}
 		
 		// Directly below
-		cell = ocean.getLayout()[coords[1] - 3][coords[0]]; 
-		if(cell != null) {
-			pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 5 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 5 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] - 2][coords[0]]; 
-		if(cell != null) {
-			pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 25 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 25 * interestInOthers.get(cell.getCode()));
-		}
-		cell = ocean.getLayout()[coords[1] - 1][coords[0]]; 
-		if(cell != null) {
-			pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 125 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 125 * interestInOthers.get(cell.getCode()));
-			pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 125 * interestInOthers.get(cell.getCode()));
-		}
+		try {
+			cell = ocean.getLayout()[coords[1] - 3][coords[0]]; 
+			if(cell != null) {
+				pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 5 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 5 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
+		try {
+			cell = ocean.getLayout()[coords[1] - 2][coords[0]]; 
+			if(cell != null) {
+				pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 25 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 25 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
+		
+		try {
+			cell = ocean.getLayout()[coords[1] - 1][coords[0]]; 
+			if(cell != null) {
+				pointsToEachMove.put("DOWN", pointsToEachMove.get("DOWN") + 125 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNRIGHT", pointsToEachMove.get("DOWNRIGHT") + 125 * interestInOthers.get(cell.getCode()));
+				pointsToEachMove.put("DOWNLEFT", pointsToEachMove.get("DOWNLEFT") + 125 * interestInOthers.get(cell.getCode()));
+			}
+		}catch(Exception e) {}
 	}
 	
 	public String decideMove()
 	{
+		calculateMoveValues();
 		String highestKey = "UP";
 		int highestValue = Integer.MIN_VALUE;
 		for(String key : pointsToEachMove.keySet()) {
@@ -226,6 +280,7 @@ public abstract class Animal extends LivingThing {
 				highestValue = pointsToEachMove.get(key);
 			}
 		}
+		System.out.println(highestKey);
 		return highestKey;
 	}
 	
