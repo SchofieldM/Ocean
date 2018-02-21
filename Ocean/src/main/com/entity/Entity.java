@@ -26,14 +26,20 @@ public abstract class Entity {
 // Concrete Methods
 		
 	// void
+		/**
+		 * Lets the Entity know what Ocean it is in
+		 * 
+		 * @param ocean, the Ocean the Entity is in
+		 */
 		public void setOcean(Ocean ocean)
 		{
 			this.ocean = ocean;
 		}
 		
 		/**
-		 * x,y
-		 * @param coords x,y
+		 * Lets the Entity know where it is in terms of x,y
+		 * 
+		 * @param coords, the x,y coordinates the Entity is at
 		 */
 		public void setCoords(int[] coords)
 		{
@@ -41,6 +47,11 @@ public abstract class Entity {
 		}
 		
 	// Ocean
+		/**
+		 * Accesor method for the Ocean the Entity is in
+		 * 
+		 * @return
+		 */
 		public Ocean getOcean()
 		{
 			return ocean;
