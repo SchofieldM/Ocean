@@ -1,5 +1,7 @@
 package main.com.entity.livingthing.animal;
 
+import main.com.Move;
+import main.com.Moves;
 import main.com.Simulation;
 import main.com.entity.Entity;
 import main.com.ocean.Ocean;
@@ -13,7 +15,6 @@ public abstract class Animal extends LivingThing {
 
 // Fields
 	// ArrayList
-		protected HashMap<String, Integer> interestInOthers;
 	// Boolean
 		protected boolean male;
 	// int
@@ -22,7 +23,8 @@ public abstract class Animal extends LivingThing {
 	//String
 		protected String moveChoice;
 	// HashMap
-		protected HashMap<String, Integer> pointsToEachMove;
+		protected HashMap<String, Integer> interestInOthers;
+		protected HashMap<Move, Integer> pointsToEachMove;
 		
 	public Animal(String code, int caloricValue, Ocean ocean, HashMap<String, Integer> interestInOthers)
 	{
@@ -50,19 +52,11 @@ public abstract class Animal extends LivingThing {
 	
 	public void requestMove()
 	{
-		String move = decideMove();
+		Move move = decideMove();
 		int newX = coords[0];
 		int newY = coords[1];
-		if(move.contains("UP")) {
-			newY++;
-		}else if(move.contains("DOWN")) {
-			newY--;
-		}
-		if(move.contains("RIGHT")) {
-			newX++;
-		}else if(move.contains("LEFT")) {
-			newX--;
-		}
+		newX += move.getXChange();
+		newY += move.getYChange();
 		ocean.moveCell(coords[0], coords[1], newX, newY);
 		coords[0] = newX;
 		coords[1] = newY;
@@ -85,14 +79,14 @@ public abstract class Animal extends LivingThing {
 	
 	public void resetPointsToEachMove()
 	{
-		pointsToEachMove.put("UP", 0);
-		pointsToEachMove.put("DOWN", 0);
-		pointsToEachMove.put("LEFT", 0);
-		pointsToEachMove.put("RIGHT", 0);
-		pointsToEachMove.put("UPRIGHT", 0);
-		pointsToEachMove.put("DOWNRIGHT", 0);
-		pointsToEachMove.put("UPLEFT", 0);
-		pointsToEachMove.put("DOWNLEFT", 0);
+		pointsToEachMove.put(Move.UP, 0);
+		pointsToEachMove.put(Move.DOWN, 0);
+		pointsToEachMove.put(Move.LEFT, 0);
+		pointsToEachMove.put(Move.RIGHT, 0);
+		pointsToEachMove.put(Move.UPRIGHT, 0);
+		pointsToEachMove.put(Move.DOWNRIGHT, 0);
+		pointsToEachMove.put(Move.UPLEFT, 0);
+		pointsToEachMove.put(Move.DOWNLEFT, 0);
 	}
 	
 	public void calculateMoveValues()
@@ -269,12 +263,12 @@ public abstract class Animal extends LivingThing {
 		}catch(Exception e) {}
 	}
 	
-	public String decideMove()
+	public Move decideMove()
 	{
 		calculateMoveValues();
-		String highestKey = "UP";
+		Move highestKey = null;
 		int highestValue = Integer.MIN_VALUE;
-		for(String key : pointsToEachMove.keySet()) {
+		for(Move key : pointsToEachMove.keySet()) {
 			if(pointsToEachMove.get(key) > highestValue) {
 				highestKey = key;
 				highestValue = pointsToEachMove.get(key);
